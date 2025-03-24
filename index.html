@@ -3,311 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identifying and Naming Basic Shapes</title>
+    <title>Shape Learning Adventure</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+        .hero-section {
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f8ff;
         }
-        nav {
-            background-color: #4CAF50;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 5px;
-            border-radius: 5px;
-        }
-        nav a:hover {
-            background-color: #45a049;
-        }
-        .hero {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .hero h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            color: #34495e;
-            font-size: 1.2em;
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+
         .feature-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
-        .feature-card img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 15px;
+
+        .feature-card:hover {
+            transform: translateY(-10px);
         }
-        .activity {
-            background-color: white;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .shape {
-            width: 100px;
-            height: 100px;
-            display: inline-block;
-            margin: 10px;
-            cursor: pointer;
-        }
-        .circle {
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: #f5f5f5;
             border-radius: 50%;
-            background-color: #FF9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
         }
-        .square {
-            background-color: #99FF99;
+
+        .feature-title {
+            color: #2c3e50;
+            margin-bottom: 1rem;
         }
-        .triangle {
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 100px solid #9999FF;
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
         }
-        .rectangle {
-            width: 150px;
-            height: 100px;
-            background-color: #FFFF99;
-        }
-        .pentagon {
-            background-color: #FF99FF;
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
+
+        .cta-button {
+            display: inline-block;
+            background: #4CAF50;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
         }
-        button:hover {
-            background-color: #45a049;
+
+        .cta-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .correct {
-            color: green;
-            display: none;
-        }
-        .wrong {
-            color: red;
-            display: none;
-        }
-        .content-section {
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .resource-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#learn">Learn</a>
-        <a href="#activities">Activities</a>
-        <a href="#resources">Resources</a>
+        <div class="nav-content">
+            <a href="index.html" class="logo">Shape Learning</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="learn.html">Learn</a>
+                <a href="activities.html">Activities</a>
+                <a href="authors.html">Authors</a>
+            </div>
+        </div>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>Welcome to Shape Learning Adventure!</h1>
-        <p>Discover the fascinating world of geometric shapes through fun and interactive lessons.</p>
-    </section>
+    <div class="hero-section">
+        <h1 class="hero-title">Welcome to Shape Learning Adventure!</h1>
+        <p class="hero-subtitle">Discover the fascinating world of shapes through interactive learning</p>
+    </div>
 
-    <section class="feature-grid">
+    <div class="features-grid">
         <div class="feature-card">
-            <div class="shape circle"></div>
-            <h3>Basic Shapes</h3>
-            <p>Learn about circles, squares, triangles, and more!</p>
+            <div class="feature-icon">📚</div>
+            <h3 class="feature-title">Learn Shapes</h3>
+            <p class="feature-description">Explore basic and advanced shapes through interactive lessons. Perfect for beginners!</p>
+            <a href="learn.html" class="cta-button">Start Learning →</a>
         </div>
+
         <div class="feature-card">
-            <div class="shape square"></div>
-            <h3>Properties</h3>
-            <p>Explore sides, angles, and unique characteristics</p>
+            <div class="feature-icon">🎮</div>
+            <h3 class="feature-title">Fun Activities</h3>
+            <p class="feature-description">Practice with engaging activities. Track your progress and earn achievements!</p>
+            <a href="activities.html" class="cta-button">Try Activities →</a>
         </div>
+
         <div class="feature-card">
-            <div class="shape triangle"></div>
-            <h3>Real World</h3>
-            <p>Find shapes in everyday objects</p>
-        </div>
-    </section>
-
-    <section id="learn" class="content-section">
-        <h2>Understanding Basic Shapes</h2>
-        <div class="shape-info">
-            <h3>What Makes Each Shape Special?</h3>
-            <ul>
-                <li><strong>Circle:</strong> A perfectly round shape with no corners</li>
-                <li><strong>Square:</strong> Has 4 equal sides and 4 equal angles (90°)</li>
-                <li><strong>Triangle:</strong> Has 3 sides and 3 angles</li>
-                <li><strong>Rectangle:</strong> Has 4 sides, opposite sides are equal</li>
-                <li><strong>Pentagon:</strong> Has 5 equal sides and 5 equal angles</li>
-            </ul>
-        </div>
-    </section>
-
-    <h2 id="activities">Learning Activities</h2>
-    <div class="activity" id="activity1">
-        <h2>Activity 1: Match the Shape Name</h2>
-        <p>Click on the shape that matches the name:</p>
-        <div id="shape-display"></div>
-        <p id="shape-question">Find the: <span id="target-shape">Circle</span></p>
-        <p class="correct">Correct! Well done! 🎉</p>
-        <p class="wrong">Try again! 🔄</p>
-    </div>
-
-    <div class="activity" id="activity2">
-        <h2>Activity 2: Count the Sides</h2>
-        <p>How many sides does each shape have?</p>
-        <div class="shape-container">
-            <div class="shape square"></div>
-            <input type="number" min="0" max="10">
-            <button onclick="checkSides(4, this)">Check</button>
+            <div class="feature-icon">🌟</div>
+            <h3 class="feature-title">Meet Authors</h3>
+            <p class="feature-description">Learn about the team behind this learning adventure!</p>
+            <a href="authors.html" class="cta-button">View Authors →</a>
         </div>
     </div>
 
-    <div class="activity" id="activity3">
-        <h2>Activity 3: Real World Shapes</h2>
-        <p>Match these everyday objects with their basic shapes:</p>
-        <ul>
-            <li>Clock - (Circle)</li>
-            <li>Door - (Rectangle)</li>
-            <li>Pizza Slice - (Triangle)</li>
-            <li>Window - (Square)</li>
-            <li>Road Sign - (Pentagon)</li>
-        </ul>
-    </div>
-
-    <div class="activity" id="activity4">
-        <h2>Activity 4: Draw the Shape</h2>
-        <p>Practice drawing these shapes in the air with your finger:</p>
-        <div id="shape-list">
-            <div class="shape circle"></div>
-            <div class="shape square"></div>
-            <div class="shape triangle"></div>
-            <div class="shape rectangle"></div>
-            <div class="shape pentagon"></div>
-        </div>
-    </div>
-
-    <div class="activity" id="activity5">
-        <h2>Activity 5: Shape Properties</h2>
-        <p>Learn about special properties of each shape:</p>
-        <ul>
-            <li>Circle: No corners, perfectly round</li>
-            <li>Square: 4 equal sides, 4 equal angles</li>
-            <li>Triangle: 3 sides, 3 angles</li>
-            <li>Rectangle: 4 sides, 2 pairs of equal sides</li>
-            <li>Pentagon: 5 equal sides and angles</li>
-        </ul>
-    </div>
-
-    <section id="resources" class="content-section">
-        <h2>Additional Resources</h2>
-        <div class="resource-grid">
-            <div class="resource-card">
-                <h3>Shape Songs</h3>
-                <ul>
-                    <li>The Shapes Song</li>
-                    <li>Shapes All Around Us</li>
-                    <li>Count the Sides</li>
-                </ul>
-            </div>
-            <div class="resource-card">
-                <h3>Printable Worksheets</h3>
-                <ul>
-                    <li>Shape Coloring Pages</li>
-                    <li>Shape Matching Exercise</li>
-                    <li>Draw and Label Shapes</li>
-                </ul>
-            </div>
-            <div class="resource-card">
-                <h3>Fun Facts</h3>
-                <ul>
-                    <li>Shapes in Nature</li>
-                    <li>Shapes in Architecture</li>
-                    <li>Famous Buildings and Shapes</li>
-                </ul>
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">
+                <p> 2025 Shape Learning Adventure. Made with for young learners.</p>
             </div>
         </div>
-    </section>
-
-    <footer style="text-align: center; margin-top: 40px; padding: 20px; background-color: white; border-radius: 10px;">
-        <p> 2025 Shape Learning Adventure. Made with for young learners.</p>
     </footer>
-
-    <script>
-        // Activity 1 - Shape Matching
-        const shapes = ['circle', 'square', 'triangle', 'rectangle', 'pentagon'];
-        const shapeDisplay = document.getElementById('shape-display');
-        
-        shapes.forEach(shape => {
-            const shapeDiv = document.createElement('div');
-            shapeDiv.className = `shape ${shape}`;
-            shapeDiv.onclick = () => checkShape(shape);
-            shapeDisplay.appendChild(shapeDiv);
-        });
-
-        function checkShape(selectedShape) {
-            const targetShape = document.getElementById('target-shape').textContent.toLowerCase();
-            const correct = document.querySelector('#activity1 .correct');
-            const wrong = document.querySelector('#activity1 .wrong');
-            
-            if (selectedShape === targetShape) {
-                correct.style.display = 'block';
-                wrong.style.display = 'none';
-            } else {
-                correct.style.display = 'none';
-                wrong.style.display = 'block';
-            }
-        }
-
-        // Activity 2 - Count Sides
-        function checkSides(correctSides, button) {
-            const input = button.previousElementSibling;
-            if (parseInt(input.value) === correctSides) {
-                alert('Correct! ');
-            } else {
-                alert('Try again! ');
-            }
-        }
-    </script>
 </body>
 </html>
